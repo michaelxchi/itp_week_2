@@ -50,22 +50,27 @@ def calculator():
 
 import math
 sales_tax_rate = 0.1075
+default_tip_rate = .1
 
-def bill_divider():
+def bill_splitter():
     # get bill amount
-    bill_amount = float(input("Please enter bill amount: "))
+    bill_amount = float(input("Please enter bill amount $: \n"))
     # get diner number
-    num_of_diners = int(input("Please enter number of diners: "))
+    num_of_diners = int(input("Please enter number of diners : \n"))
     # get tip percentage
-    percent_of_tips = int((input("Please enter percentage for tips: ")))
-    #amount with sales tax and user specified tip rate
-    total_amount = (bill_amount * (1 + sales_tax_rate)) * (1 + (percent_of_tips) /100)
-    #diner amount to whole dollar
-    each_diner_amount = math.ceil(total_amount / num_of_diners)
+    percent_of_tips = ((input("Please enter percentage for tips: \n")))
+    #if user not enter tip percentage, function takes default rate to calculate tips
+    if percent_of_tips == '':
+        total_amount = (bill_amount * (1 + sales_tax_rate)) * (1 + (default_tip_rate))
+    else:
+         #amount with sales tax and user specified tip rate
+         total_amount = (bill_amount * (1 + sales_tax_rate)) * (1 + int(percent_of_tips) /100)
+        #diner amount to whole dollar
+    each_diner_amount = (total_amount / num_of_diners)
 
-    print("Each diner need to pay $" + str(each_diner_amount))
+    print("Each diner needs to pay: \n$" + "{:.2f}".format(each_diner_amount))
 
-bill_divider()
+bill_splitter()
     
 
 
